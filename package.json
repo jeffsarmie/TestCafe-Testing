@@ -1,0 +1,21 @@
+{
+  "name": "testcafe-testing",
+  "version": "1.0.0",
+  "description": "For Jeff's Testing and Learning of Test Cafe",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcafe chrome ./tests"
+  },
+  "keywords": [
+    "TestCafe",
+    "Testing",
+    "JeffTest",
+    "Automation"
+  ],
+  "author": "Jeff Sarmiento",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^1.19.1",
+    "testcafe": "^1.8.2"
+  }
+}
