@@ -9,6 +9,7 @@ fixture `Getting Started with TestCafe`
     })
     .beforeEach(async t => {
         //Runs before each test
+        await t.setTestSpeed(1)
     })
     .after(async t => {
         //Cleaning test data
@@ -19,7 +20,6 @@ fixture `Getting Started with TestCafe`
     })
 
 test('My first testcafe test', async t => {
-    await t.setTestSpeed(1)
     await t.typeText('#developer-name', 'Jeff')
     await t.click('#submit-button')
     await t.expect(Selector('#article-header').innerText).contains('Jeff')
