@@ -20,7 +20,12 @@ fixture `Getting Started with TestCafe`
     })
 
 test('My first testcafe test', async t => {
-    await t.typeText('#developer-name', 'Jeff')
-    await t.click('#submit-button')
-    await t.expect(Selector('#article-header').innerText).contains('Jeff')
+    const dev_name_input = Selector('#developer-name')
+    const submit_button = Selector('#submit-button')
+    const articleText = Selector('#article-header').innerText
+
+    await t.typeText(dev_name_input, 'Jeff')
+    //await t.wait(3000)
+    await t.click(submit_button)
+    await t.expect(articleText).contains('Jeff')
 })
