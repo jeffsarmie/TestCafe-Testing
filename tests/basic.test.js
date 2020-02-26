@@ -6,4 +6,6 @@ fixture `Getting Started with TestCafe`
 test('My first testcafe test', async t => {
     await t.typeText('#developer-name', 'Jeff')
     await t.click('#submit-button')
+
+    await t.expect(Selector('#article-header').innerText).contains('Jeff')
 })
