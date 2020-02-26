@@ -2,7 +2,7 @@ import { Selector } from 'testcafe'
 
 fixture `Getting Started with TestCafe`
     .page`https://devexpress.github.io/testcafe/example`
-    .before(aync t => { 
+    .before(async t => { 
         //Test goes here
         //await runDatabaseReset()
         //await seedTestData()
@@ -19,8 +19,8 @@ fixture `Getting Started with TestCafe`
     })
 
 test('My first testcafe test', async t => {
+    await t.setTestSpeed(1)
     await t.typeText('#developer-name', 'Jeff')
     await t.click('#submit-button')
-
     await t.expect(Selector('#article-header').innerText).contains('Jeff')
 })
