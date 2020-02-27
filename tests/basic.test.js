@@ -54,4 +54,26 @@ test('My first testcafe test', async t => {
     await t.takeElementScreenshot()
     // Resize Window
     await t.resizeWindow(800, 600)
+
+    // Deep equal
+    await t.expect('foo').eql('foo', 'message', options)
+    // Not Deep equal
+    await t.expect('foo').notEql('bar')
+    // OK
+    await t.expect(true).ok()
+    // Not OK
+    await t.expect(true).notOk()
+    // Contains
+    await t.expect('foo').contains('oo')
+    // Not Contains
+    await t.expect('foo').notContains('hey')
+    // Greater than or Less than
+    await t.expect(10).gt(5)
+    await t.expect(5).gte(5)
+    await t.expect(5).lt(10)
+    await t.expect(5).lte(5)
+    // Within
+    await t.expect(10).within(1, 100)
+    // Not Within
+    await t.expect(10).notWithin(11, 20)
 })
