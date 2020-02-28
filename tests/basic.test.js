@@ -21,7 +21,7 @@ fixture `Getting Started with TestCafe`
     })
 
 
-test('My first testcafe test', async t => {
+test.skip('My first testcafe test', async t => {
     const dev_name_input = Selector('#developer-name')
     const submit_button = Selector('#submit-button')
     const articleText = Selector('#article-header').innerText
