@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test:chrome": "testcafe chrome ./tests -s takeOnFails=true",
-    "test:chrome:feedback": "testcafe chrome /feedback.test.js -s takeOnFails=true",
+    "test:chrome:5": "testcafe -c 5 chrome:headless ./tests -s takeOnFails=true",
+    "test:chrome:feedback": "testcafe chrome ./tests/feedback.test.js -s takeOnFails=true",
     "test:chrome:headless": "testcafe chrome:headless ./tests -s takeOnFails=true",
     "test:chrome:mobile": "testcafe chrome:emulation:device=iphone X ./tests -s takeOnFails=true",
     "test:safari": "testcafe safari ./tests -s takeOnFails=true",
-    "test:firefox": "testcafe firefox ./tests -s takeOnFails=true"
+    "test:firefox": "testcafe firefox ./tests -s takeOnFails=true",
+    "test:multiple": "testcafe chrome,firefox ./tests -s takeOnFails=true"
   },
   "keywords": [
     "TestCafe",
@@ -22,5 +24,8 @@
   "dependencies": {
     "prettier": "^1.19.1",
     "testcafe": "^1.8.2"
+  },
+  "devDependencies": {
+    "xpath-to-css": "^1.0.4"
   }
 }

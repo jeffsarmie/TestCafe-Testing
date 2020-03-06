@@ -1,41 +1,35 @@
 import { Selector } from 'testcafe'
+import { login } from '../helper'
 
 fixture `login test`
     .page `http://zero.webappsecurity.com/`
 
 test("User cannot login with invalid credentials", async t =>{
-    const signInButton = Selector('#signin_button')
-    await t.click(signInButton)
-
-    const loginForm = Selector('#login_form')
-    await t.expect(loginForm.exists).ok()
-
-    const userNameInput = Selector('#user_login')
-    const passwordInput = Selector('#user_password')
-    await t.typeText(userNameInput, "Invalid UserName", { paste: true })
-    await t.typeText(passwordInput, "Invalid password", { paste: true })
-    
-    const signInSubmit = Selector('.btn-primary')
-    await t.click(signInSubmit)
-
+    //Selectors
     const errorMessage = Selector('.alert-error').innerText
+    
+    //Actions
+    await login("invaliduser", "invalidpass")
+
+    //Assertions
     await t.expect(errorMessage).contains('Login and/or password are wrong.')
 })
 
 test("User can login with valid credentials", async t =>{
     const signInButton = Selector('#signin_button')
-    await t.click(signInButton)
+    // await t.click(signInButton)
 
     const loginForm = Selector('#login_form')
-    await t.expect(loginForm.exists).ok()
+    //await t.expect(loginForm.exists).ok()
 
-    const userNameInput = Selector('#user_login')
-    const passwordInput = Selector('#user_password')
-    await t.typeText(userNameInput, "username", { paste: true })
-    await t.typeText(passwordInput, "password", { paste: true })
+    // const userNameInput = Selector('#user_login')
+    // const passwordInput = Selector('#user_password')
+    // await t.typeText(userNameInput, "username", { paste: true })
+    // await t.typeText(passwordInput, "password", { paste: true })
     
-    const signInSubmit = Selector('.btn-primary')
-    await t.click(signInSubmit)
+    // const signInSubmit = Selector('.btn-primary')
+    // await t.click(signInSubmit)
+    await login("username", "password")
 
     const accountSummaryTab = Selector('#account_summary_tab')
     await t.expect(accountSummaryTab.exists).ok()

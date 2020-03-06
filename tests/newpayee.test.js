@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe'
+import { login } from '../helper'
 
 fixture `New Payee Test`
     .page `http://zero.webappsecurity.com/index.html`
@@ -6,14 +7,7 @@ fixture `New Payee Test`
 
 test
 .before(async t => {
-    const signInButton = Selector('#signin_button')
-    await t.click(signInButton)
-    const userNameInput = Selector('#user_login')
-    const passwordInput = Selector('#user_password')
-    await t.typeText(userNameInput, "username", { paste: true })
-    await t.typeText(passwordInput, "password", { paste: true })
-    const signInSubmit = Selector('.btn-primary')
-    await t.click(signInSubmit)
+    await login("username", "password")
 })
 ("User can add new payee to the list", async t => {
     //Selectors
