@@ -1,5 +1,8 @@
 import { Selector } from 'testcafe'
 import { login } from '../helper'
+import Navbar from '../page-objects/components/Navbar'
+
+const navbar = new Navbar()
 
 fixture `login test`
     .page `http://zero.webappsecurity.com/`
@@ -16,19 +19,8 @@ test("User cannot login with invalid credentials", async t =>{
 })
 
 test("User can login with valid credentials", async t =>{
-    const signInButton = Selector('#signin_button')
-    // await t.click(signInButton)
-
-    const loginForm = Selector('#login_form')
-    //await t.expect(loginForm.exists).ok()
-
-    // const userNameInput = Selector('#user_login')
-    // const passwordInput = Selector('#user_password')
-    // await t.typeText(userNameInput, "username", { paste: true })
-    // await t.typeText(passwordInput, "password", { paste: true })
     
-    // const signInSubmit = Selector('.btn-primary')
-    // await t.click(signInSubmit)
+    const loginForm = Selector('#login_form')
     await login("username", "password")
 
     const accountSummaryTab = Selector('#account_summary_tab')
@@ -42,5 +34,5 @@ test("User can login with valid credentials", async t =>{
     await t.click(logoutButton)
 
     await t.expect(logoutButton.exists).notOk()
-    await t.expect(signInButton.exists).ok()
+    await t.expect(navbar.signInButton.exists).ok()
 })
