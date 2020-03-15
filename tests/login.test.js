@@ -1,27 +1,27 @@
 import { Selector } from 'testcafe'
-import { login } from '../helper'
+//import { login } from '../helper'
+import LoginPage from '../page-objects/pages/LoginPage'
 import Navbar from '../page-objects/components/Navbar'
 
 const navbar = new Navbar()
+const loginPage = new LoginPage()
 
 fixture `login test`
     .page `http://zero.webappsecurity.com/`
 
 test("User cannot login with invalid credentials", async t =>{
-    //Selectors
-    const errorMessage = Selector('.alert-error').innerText
-    
-    //Actions
-    await login("invaliduser", "invalidpass")
+    await t.click(navbar.signInButton)
+    loginPage.loginToApp("invalidUsername", "invalidPassword")
 
-    //Assertions
+    const errorMessage = Selector('.alert-error').innerText
     await t.expect(errorMessage).contains('Login and/or password are wrong.')
 })
 
 test("User can login with valid credentials", async t =>{
-    
     const loginForm = Selector('#login_form')
-    await login("username", "password")
+    
+    await t.click(navbar.signInButton)
+    loginPage.loginToApp('username', 'password')
 
     const accountSummaryTab = Selector('#account_summary_tab')
     await t.expect(accountSummaryTab.exists).ok()
