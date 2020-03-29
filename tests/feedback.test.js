@@ -1,4 +1,7 @@
 import { Selector } from 'testcafe'
+import FeedBackPage from '../page-objects/pages/FeedbackPage'
+
+const feedback = new FeedBackPage()
 
 fixture `Feedback form test`
     .page `http://zero.webappsecurity.com/index.html`
@@ -6,22 +9,13 @@ fixture `Feedback form test`
 test ("User can submit feedback via form", async t => {
     // Selectors
     const linkToFeedback = Selector('#feedback')
-    const feedBackFormName = Selector('#name')
-    const feedBackFormEmail = Selector('#email')
-    const feedBackFormSubj = Selector('#subject')
-    const feedBackFormComments = Selector('#comment')
-    const feedBackFormSubmit = Selector('input').withAttribute('value', 'Send Message')
-    const feedBackFormClear = Selector('input').withAttribute('value', 'Clear')
-    const message = Selector('div').innerText
-    
     //Actions
     await t.click(linkToFeedback)
-    await t.typeText(feedBackFormName, 'NAME', { paste : true })
-    await t.typeText(feedBackFormEmail, 'jeff.sarm@test.email.com')
-    await t.typeText(feedBackFormSubj, 'subject goes here', { paste : true })
-    await t.typeText(feedBackFormComments, 'This is the comment that I want to put in', { paste : true })
-    await t.click(feedBackFormSubmit)
-
+    feedback.typeName('NAME')
+    feedback.typeEmail('email@test.com')
+    feedback.typeSubject('This is my subject')
+    feedback.typeComments('This is my comment')
+    feedback.click(feedback.feedBackFormSubmit)
     //Assertions
-    await t.expect(message).contains("Thank you for your comments")
+    await t.expect(feedback.message.innerText).contains("Thank you for your comments")
 })
